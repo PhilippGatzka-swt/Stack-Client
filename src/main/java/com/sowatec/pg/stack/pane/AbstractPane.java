@@ -1,9 +1,11 @@
 package main.java.com.sowatec.pg.stack.pane;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 
-public abstract class AbstractPane<T extends Node, L extends Node, C extends Node, R extends Node, B extends Node> extends BorderPane {
+public abstract class AbstractPane<T extends Node, L extends Node, C extends Node, R extends Node, B extends Node> extends BorderPane implements EventHandler<ActionEvent> {
 
     protected T top;
     protected L left;

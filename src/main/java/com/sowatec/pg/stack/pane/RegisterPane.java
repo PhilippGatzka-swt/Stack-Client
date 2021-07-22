@@ -17,7 +17,7 @@ import main.java.com.sowatec.pg.stack.data.dbo.UserDBO;
 
 import java.util.Objects;
 
-public class RegisterPane extends AbstractPane<Node, Node, VBox, Node, Node> implements EventHandler<ActionEvent> {
+public class RegisterPane extends AbstractPane<Node, Node, VBox, Node, Node>{
 
     private TextField username;
     private TextField email;

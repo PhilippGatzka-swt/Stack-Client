@@ -1,11 +1,18 @@
 package main.java.com.sowatec.pg.stack.controller;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
 import javafx.scene.layout.BorderPane;
+import main.java.com.sowatec.pg.stack.Util;
+import main.java.com.sowatec.pg.stack.data.DatabaseExecutor;
 import main.java.com.sowatec.pg.stack.data.Model;
+import main.java.com.sowatec.pg.stack.data.dbo.UserDBO;
 import main.java.com.sowatec.pg.stack.pane.*;
 
-public class StackClientMainController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class StackClientMainController implements Initializable {
 
     public BorderPane parent;
     private Model model;
@@ -20,23 +27,30 @@ public class StackClientMainController {
         return controller;
     }
 
+    public void showAskPane(ActionEvent actionEvent) {
+        if (model.isLoggedIn())
+            parent.setCenter(new AskPane());
+        else
+            showLoginPane(actionEvent);
+    }
+
     public void showAccountPane(ActionEvent actionEvent) {
         if (model.isLoggedIn())
             parent.setCenter(new AccountPane());
         else
-            showRegisterPane(actionEvent);
+            showLoginPane(actionEvent);
     }
 
     public void showInfoPane(ActionEvent actionEvent) {
         if (model.isLoggedIn()) parent.setCenter(new InfoPane());
         else
-            showRegisterPane(actionEvent);
+            showLoginPane(actionEvent);
     }
 
     public void showSettingsPane(ActionEvent actionEvent) {
         if (model.isLoggedIn()) parent.setCenter(new SettingsPane());
         else
-            showRegisterPane(actionEvent);
+            showLoginPane(actionEvent);
     }
 
     public void showLoginPane(ActionEvent actionEvent) {
@@ -50,6 +64,18 @@ public class StackClientMainController {
     public void showMainPane(ActionEvent actionEvent) {
         if (model.isLoggedIn()) parent.setCenter(new MainPane());
         else
-            showRegisterPane(actionEvent);
+            showLoginPane(actionEvent);
+    }
+
+    public void loginAs(UserDBO userDBO) {
+        model.loginAs(userDBO);
+        showMainPane(null);
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        showLoginPane(null);
+        loginAs(DatabaseExecutor.getUser(new UserDBO("admin", Util.hash("admin"))));
+        showAskPane(null);
     }
 }

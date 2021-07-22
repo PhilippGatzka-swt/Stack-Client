@@ -29,12 +29,21 @@ public class UserDBO extends AbstractDBO {
         this.type = "UserDBO";
     }
 
-    public synchronized static boolean register(UserDBO userDBO) {
+    public UserDBO(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public static boolean register(UserDBO userDBO) {
         return DatabaseExecutor.registerUser(userDBO);
     }
 
-    public synchronized void register() {
-        register(this);
+    public static boolean doesUserExist(UserDBO userDBO) {
+        return DatabaseExecutor.doesUserExist(userDBO);
+    }
+
+    public static UserDBO getUser(UserDBO userDBO) {
+        return DatabaseExecutor.getUser(userDBO);
     }
 
     public String getUsername() {

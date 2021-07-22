@@ -1,5 +1,7 @@
 package main.java.com.sowatec.pg.stack.data;
 
+import main.java.com.sowatec.pg.stack.DatabaseConnector;
+import main.java.com.sowatec.pg.stack.Util;
 import main.java.com.sowatec.pg.stack.data.dbo.AbstractDBO;
 import main.java.com.sowatec.pg.stack.data.dbo.UserDBO;
 
@@ -11,6 +13,9 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.net.Socket;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.logging.Level;
 
 public class DatabaseExecutor {
     private static DatabaseExecutor instance;
@@ -37,11 +42,42 @@ public class DatabaseExecutor {
             jaxbMarshaller.marshal(userDBO, writer);
             String xmlContent = writer.toString();
             dos.writeUTF(xmlContent);
-            String success = new DataInputStream(socket.getInputStream()).readUTF().replace("success: ","");
+            String success = new DataInputStream(socket.getInputStream()).readUTF().replace("success: ", "");
             return Boolean.parseBoolean(success);
         } catch (JAXBException | IOException e) {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public static boolean doesUserExist(UserDBO userDBO) {
+        try {
+            PreparedStatement select = DatabaseConnector.getConnection().prepareStatement("select * from t_user where username = ? and password = ?");
+            select.setString(1,userDBO.getUsername());
+            select.setString(2,userDBO.getPassword());
+            ResultSet set = select.executeQuery();
+            return set.next();
+        } catch (Exception e) {
+            Util.log(Level.WARNING,"DatabaseExecutor.doesUserExist(); " +   e.toString());
+            return false;
+        }
+    }
+
+    public static UserDBO getUser(UserDBO userDBO) {
+        try {
+            PreparedStatement select = DatabaseConnector.getConnection().prepareStatement("select * from t_user where username = ? and password = ?");
+            select.setString(1,userDBO.getUsername());
+            select.setString(2,userDBO.getPassword());
+            ResultSet set = select.executeQuery();
+            set.next();
+            UserDBO login = new UserDBO();
+            login.setUsername(set.getString("username"));
+            login.setId(set.getInt("id"));
+            login.setEmail(set.getString("email"));
+            return login;
+        } catch (Exception e) {
+            Util.log(Level.WARNING,"DatabaseExecutor.getUser(); " +  e);
+            return null;
+        }
     }
 }

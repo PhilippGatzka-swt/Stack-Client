@@ -2,8 +2,12 @@ package main.java.com.sowatec.pg.stack;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public final class Util {
+    private static Logger logger = Logger.getLogger(Util.class.getName());
 
     public static String hash(String input) {
         try {
@@ -20,6 +24,10 @@ public final class Util {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public static void log(Level level, String message){
+        logger.log(level,message);
     }
 
 }
