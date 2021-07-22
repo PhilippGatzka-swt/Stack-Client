@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane maxHeight="830.0" maxWidth="1130.0" minHeight="830.0" minWidth="1130.0" prefHeight="830.0" prefWidth="1130.0" style="-fx-background-color: #CFCFCF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox alignment="CENTER" spacing="5.0" BorderPane.alignment="CENTER">
+         <Label text="Username">
+            <VBox.margin>
+               <Insets top="5.0"/>
+            </VBox.margin>
+         </Label>
+         <TextField maxWidth="300.0" minWidth="300.0" prefWidth="300.0"/>
+         <Label text="Email">
+            <VBox.margin>
+               <Insets top="5.0"/>
+            </VBox.margin>
+         </Label>
+         <TextField maxWidth="300.0" minWidth="300.0" prefWidth="300.0"/>
+         <Label text="Password">
+            <VBox.margin>
+               <Insets top="5.0"/>
+            </VBox.margin>
+         </Label>
+         <PasswordField maxWidth="300.0" minWidth="300.0" prefWidth="300.0"/>
+         <Label text="Repeat password">
+            <VBox.margin>
+               <Insets top="5.0"/>
+            </VBox.margin>
+         </Label>
+         <PasswordField maxWidth="300.0" minWidth="300.0" prefWidth="300.0"/>
+         <Button mnemonicParsing="false" style="-fx-background-color: #00FF55;" text="Submit"/>
+      </VBox>
+   </center>
+</BorderPane>

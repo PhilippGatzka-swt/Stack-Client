@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<BorderPane fx:id="parent" style="-fx-background-color: #CFCFCF;" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="main.java.com.sowatec.pg.stack.controller.StackClientMainController">
+    <top>
+        <BorderPane maxHeight="70.0" maxWidth="1200.0" minHeight="70.0" minWidth="1200.0" prefHeight="70.0"
+                    prefWidth="1200.0" style="-fx-background-color: #6E6E6E;" BorderPane.alignment="CENTER">
+            <left>
+                <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true"
+                           BorderPane.alignment="CENTER">
+                    <viewport>
+                        <Rectangle2D/>
+                    </viewport>
+                    <BorderPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                    </BorderPane.margin>
+                    <Image url="@../image/stack.png"/>
+                </ImageView>
+            </left>
+            <BorderPane.margin>
+                <Insets/>
+            </BorderPane.margin>
+        </BorderPane>
+    </top>
+    <left>
+        <BorderPane maxHeight="830.0" maxWidth="70.0" minHeight="830.0" minWidth="70.0" prefHeight="830.0"
+                    prefWidth="70.0" styleClass="nav-item" stylesheets="@../css/dark.css" BorderPane.alignment="CENTER">
+            <bottom>
+                <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+
+                    <Button maxHeight="70.0" maxWidth="70.0" minHeight="70.0" minWidth="70.0" mnemonicParsing="false"
+                            onAction="#showAccountPane" prefHeight="70.0" prefWidth="70.0"
+                            stylesheets="@../css/dark.css">
+                        <styleClass>
+                            <String fx:value="nav-button"/>
+                            <String fx:value="account-button"/>
+                            <String fx:value="nav-item"/>
+                        </styleClass>
+                    </Button>
+                    <Button maxHeight="70.0" maxWidth="70.0" minHeight="70.0" minWidth="70.0" mnemonicParsing="false"
+                            onAction="#showInfoPane" prefHeight="70.0" prefWidth="70.0" stylesheets="@../css/dark.css">
+                        <styleClass>
+                            <String fx:value="nav-button"/>
+                            <String fx:value="info-button"/>
+                            <String fx:value="nav-item"/>
+                        </styleClass>
+                    </Button>
+                    <Button maxHeight="70.0" maxWidth="70.0" minHeight="70.0" minWidth="70.0" mnemonicParsing="false"
+                            onAction="#showSettingsPane" prefHeight="70.0" prefWidth="70.0"
+                            stylesheets="@../css/dark.css">
+                        <styleClass>
+                            <String fx:value="nav-button"/>
+                            <String fx:value="nav-item"/>
+                            <String fx:value="settings-button"/>
+                        </styleClass>
+                    </Button>
+
+                </VBox>
+            </bottom>
+            <top>
+                <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                    <Button maxHeight="70.0" maxWidth="70.0" minHeight="70.0" minWidth="70.0" mnemonicParsing="false"
+                            onAction="#showMainPane" prefHeight="70.0" prefWidth="70.0" stylesheets="@../css/dark.css">
+                        <styleClass>
+                            <String fx:value="nav-button"/>
+                            <String fx:value="home-button"/>
+                            <String fx:value="nav-item"/>
+                        </styleClass>
+                    </Button>
+                </VBox>
+            </top>
+        </BorderPane>
+    </left>
+</BorderPane>
